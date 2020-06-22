@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-app
+spec:
+  selector:
+    matchLabels:
+      app: book-app
+  template:
+    metadata:
+      labels:
+        app: book-app
+    spec:
+      containers:
+        - name: book-app-container
+          image: book-service
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3002

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: purchase-app
+spec:
+  selector:
+    matchLabels:
+      app: purchase-app
+  template:
+    metadata:
+      labels:
+        app: purchase-app
+    spec:
+      containers:
+        - name: purchase-app-container
+          image: purchase-service
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3001

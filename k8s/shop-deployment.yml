@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shop-app
+spec:
+  selector:
+    matchLabels:
+      app: shop-app
+  template:
+    metadata:
+      labels:
+        app: shop-app
+    spec:
+      containers:
+        - name: shop-app-container
+          image: shop-service
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
